@@ -1,0 +1,23 @@
+{
+  "name": "webcomponents",
+  "version": "1.0.0",
+  "description": "An experiment in webcomponents",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "tsc": "tsc",
+    "watch": "tsc --watch",
+    "start": "tsc && web-dev-server --node-resolve --open --watch --app-index dist/index.html"
+  },
+  "keywords": [
+    "webcomponents",
+    "experiment"
+  ],
+  "author": "Timo Schinkel",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.7.1",
+    "@web/dev-server": "^0.3.2",
+    "typescript": "^5.2.2"
+  }
+}

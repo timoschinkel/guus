@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "lib": ["ES2023", "dom"],
+      "module": "ESNext",
+      "target": "ES2022",
+      "outDir": "./dist/js",
+      "rootDir": "./src",
+      "moduleResolution": "node"
+    },
+    "include": ["src/*.ts", "src/**/*.ts"],
+    "exclude": []
+  }
