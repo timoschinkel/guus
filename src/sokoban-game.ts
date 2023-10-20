@@ -74,6 +74,8 @@ const levels: Record<number, Level> = {
 export class SokobanComponent extends HTMLElement {
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
+    private canvasWidth: number;
+    private canvasHeight: number;
 
     private staat: string;
     private breedte: number;
@@ -126,6 +128,8 @@ export class SokobanComponent extends HTMLElement {
         const dpr = window.devicePixelRatio || 1;
         // Get the size of the canvas in CSS pixels.
         const rect = this.canvas.getBoundingClientRect();
+        this.canvasWidth = rect.width;
+        this.canvasHeight = rect.height;
         // Give the canvas pixel dimensions of their CSS
         // size * the device pixel ratio.
         this.canvas.width = rect.width * dpr;
@@ -142,7 +146,7 @@ export class SokobanComponent extends HTMLElement {
 
     private teken(): void {
         // Maak het tekenveld leeg
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
         // Stel level en aantal stappen in
         this.shadowRoot.querySelector('#level').innerHTML = this.level.toString();
@@ -152,13 +156,13 @@ export class SokobanComponent extends HTMLElement {
         const aantalKolommen = this.breedte;
 
         const grootte = Math.min(
-            Math.floor(this.canvas.width / aantalKolommen),
-            Math.floor(this.canvas.height / aantalRijen)
+            Math.floor(this.canvasWidth / aantalKolommen),
+            Math.floor(this.canvasHeight / aantalRijen)
         );
 
         // Bereken waar we beginnen met tekenen
-        const beginKolom = (this.canvas.width - (aantalKolommen * grootte)) / 2;
-        const beginRij = (this.canvas.height - (aantalRijen * grootte)) / 2;
+        const beginKolom = (this.canvasWidth - (aantalKolommen * grootte)) / 2;
+        const beginRij = (this.canvasHeight - (aantalRijen * grootte)) / 2;
 
         for (let rij = 0; rij < aantalRijen; rij++) {
             for (let kolom = 0; kolom < aantalKolommen; kolom++) {
