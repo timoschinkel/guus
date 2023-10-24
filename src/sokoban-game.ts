@@ -101,7 +101,7 @@ export class SokobanComponent extends HTMLElement {
         this.beginLevel(this.level);
 
         // Add event listeners
-        this.addEventListener('keydown', this.opToetsGedrukt.bind(this));
+        window.addEventListener('keydown', this.opToetsGedrukt.bind(this));
         this.shadowRoot.querySelector('#level-opnieuw-beginnen').addEventListener('click', () => this.beginLevel(this.level));
         this.shadowRoot.querySelector('#zet-ongedaan-maken').addEventListener('click', () => this.laatsteZetOngedaanMaken());
         window.addEventListener('resize', (event) => {
@@ -161,8 +161,8 @@ export class SokobanComponent extends HTMLElement {
         );
 
         // Bereken waar we beginnen met tekenen
-        const beginKolom = (this.canvasWidth - (aantalKolommen * grootte)) / 2;
-        const beginRij = (this.canvasHeight - (aantalRijen * grootte)) / 2;
+        const beginKolom = Math.floor((this.canvasWidth - (aantalKolommen * grootte)) / 2);
+        const beginRij = Math.floor((this.canvasHeight - (aantalRijen * grootte)) / 2);
 
         for (let rij = 0; rij < aantalRijen; rij++) {
             for (let kolom = 0; kolom < aantalKolommen; kolom++) {
